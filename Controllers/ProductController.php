@@ -1,4 +1,5 @@
 <?php
+require_once 'classes//controller.php';
 require_once 'models/product.php';
 class ProductController extends Controller
 {
@@ -6,6 +7,8 @@ class ProductController extends Controller
     {
         $products = (new Product())->all();
 
-        $this->render('allproducts',$products);
+
+
+        $this->render('allproducts',['products' => $products]);
     }
 }

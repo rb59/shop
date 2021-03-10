@@ -13,7 +13,7 @@ class Controller
         $content = ob_get_contents();
         ob_end_clean();
 
-        require_once "Views/Layout/BaseLayout.php";
+        require_once "Views/Layouts/BaseLayout.php";
     }
 
 

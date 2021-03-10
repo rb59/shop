@@ -1,6 +1,6 @@
 <?php
 
-namespace Config;
+
 class Config
 {
     // Returns the values needed to create the db connection

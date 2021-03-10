@@ -1,3 +1,7 @@
-<?php foreach ($products as $product) {
-    echo $product['name'];
-} ?>
+<?php 
+    foreach ($products as $product) 
+    {
+        echo $product['name']."<br> ";
+    }
+    
+?>

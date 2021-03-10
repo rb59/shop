@@ -1,6 +1,6 @@
 <?php
 
-use Config\Config;
+require_once 'config.php';
 class Database
 {
 
@@ -27,7 +27,8 @@ class Database
 
     public function connect()
     {
-        $strconn ="{driver}:host={host};port={port};dbname={database};charset={charset}";
+        
+        $strconn = driver.":host=".host.";port=".port.";dbname=".database.";charset=".charset."";
         $pdo = new PDO($strconn,user,password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;

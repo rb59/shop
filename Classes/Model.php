@@ -1,7 +1,7 @@
 <?php
 //namespace Model;
 
-use Database;
+
 
 require_once 'config/database.php';
 
@@ -26,7 +26,7 @@ class Model
     {
         $query = $this->db->prepare("SELECT * FROM {$this->table}");
         $query->execute();
-        $data = $query->fetchAll();
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
 
@@ -34,7 +34,7 @@ class Model
     {
         $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = '{$id}' ");
         $query->execute();
-        $data = $query->fetchAll();
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
 
@@ -42,8 +42,8 @@ class Model
     {
         $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE {$field} = '{$value}' ");
         $query->execute();
-        $data = $query->fetchAll();
-        return $data;
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        return  $data;
     }
 
     public function update(Int $id, Array $fields)
