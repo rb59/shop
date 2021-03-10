@@ -19,7 +19,25 @@ class Controller
 
         require_once "Views/Layouts/BaseLayout.php";
     }
+/*
+    public function getPost(Type $var = null)
+    {
+        # code...
+    }
 
+    public function FunctionName(Type $var = null)
+    {
+        # code...
+    }
 
+    public function FunctionName(Type $var = null)
+    {
+        # code...
+    }
+
+    public function FunctionName(Type $var = null)
+    {
+        # code...
+    }*/
 
 }

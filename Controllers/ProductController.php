@@ -8,4 +8,11 @@ class ProductController extends Controller
         $products = (new Product())->all();
         $this->render('allproducts',['products' => $products]);
     }
+
+    public function Show($params)
+    {
+        $id = $params['id'];
+        $product = (new Product())->id($id);
+        $this->render('product',['product' => $product]);
+    }
 }

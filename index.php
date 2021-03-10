@@ -1,7 +1,10 @@
 <?php
-
+require_once 'Routes/Routes.php';
 require_once 'controllers/productcontroller.php';
-$prueba = new ProductController();
-$prueba->Index();
+
+
+$app = new Routes();
+
+
 
 ?>

@@ -20,33 +20,32 @@ class Model
     
     public function all()
     {
-        $query = $this->db->prepare("SELECT * FROM {$this->table}");
-        $query->execute();
+        $query = $this->db->query("SELECT * FROM {$this->table}");
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
 
-    public function id(Int $id)
+    public function id($id)
     {
-        $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = '{$id}' ");
-        $query->execute();
+        
+        $query = $this->db->query("SELECT * FROM {$this->table} WHERE id = '{$id}' ");
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
 
     public function getBy($field,$value)
     {
-        $query = $this->db->prepare("SELECT * FROM {$this->table} WHERE {$field} = '{$value}' ");
-        $query->execute();
+        $query = $this->db->query("SELECT * FROM {$this->table} WHERE {$field} = '{$value}' ");
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         return  $data;
     }
 
-    public function update(Int $id, Array $fields)
+    public function update($id, Array $fields)
     {
         $fieldstring = $this->getFields($fields);
         $query = $this->db->prepare("UPDATE {$this->table} SET $fieldstring WHERE id = '{$id}' ");
         $query->execute();
+        return;
     }
 
     public function getFields(Array $fields) : String
@@ -63,6 +62,7 @@ class Model
     {
         $query = $this->db->prepare("DELETE FROM {$this->table} WHERE id = '{$id}' ");
         $query->execute();
+        return;
     }
 
 
