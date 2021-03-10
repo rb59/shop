@@ -26,8 +26,7 @@ class Database
     }
 
     public function connect()
-    {
-        
+    {        
         $strconn = driver.":host=".host.";port=".port.";dbname=".database.";charset=".charset."";
         $pdo = new PDO($strconn,user,password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

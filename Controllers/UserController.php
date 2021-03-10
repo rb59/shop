@@ -1,5 +1,11 @@
 <?php
-
+require_once 'classes/controller.php';
 require_once 'models/user.php';
 
-$user = new User('users');
+class UserController extends Controller
+{
+    public function Index()
+    {
+        
+    }
+}

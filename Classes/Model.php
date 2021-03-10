@@ -1,8 +1,4 @@
 <?php
-//namespace Model;
-
-
-
 require_once 'config/database.php';
 
 class Model
@@ -62,6 +58,7 @@ class Model
         }
         return substr($fieldstring,0,-1);
     }
+
     public function delete(Int $id)
     {
         $query = $this->db->prepare("DELETE FROM {$this->table} WHERE id = '{$id}' ");
