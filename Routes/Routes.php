@@ -6,14 +6,26 @@ class Routes
     function __construct()
     {
         (new Dispatcher())
-        ->routing('/products', function($params)
-        {
-            (new ProductController())->Index($params); 
-        })
-        ->routing('/product/{id}', function($params)
-        {
-            (new ProductController())->Show($params); 
-        })
-        ->dispatch();
+            ->routing('/', function ()
+            {
+                (new ProductController())->Index(); 
+            })
+            ->routing('/products', function()
+            {
+                (new ProductController())->Index(); 
+            })
+            ->routing('/product/{id}', function($params)
+            {   
+                (new ProductController())->Show($params); 
+            })
+            ->routing('/cart/add', function ()
+            {
+                (new CartController())->add();    
+            })
+            ->routing('/login', function()
+            {
+                (new UserController)->login();
+            })
+            ->dispatch();
     }
 }
