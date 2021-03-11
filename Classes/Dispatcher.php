@@ -1,38 +1,44 @@
 <?php
 require_once 'router.php';
-class Dispatcher {
-
+class Dispatcher 
+{
     private $router;
 
-    function __construct() {
+    function __construct() 
+    {
         $this->router = new Router();
     }
 
-    public final function dispatch() {
-        $url = isset($_GET['url']) ? $_GET['url']: null;
-        //$url = rtrim($url, '/');
-        
+    public final function dispatch() 
+    {
+        $url = isset($_GET['url']) ? $_GET['url']: '';
+        $url = rtrim($url, '/');
         $this->router->route(
             $_SERVER['REQUEST_METHOD'],
-            $this->pathFromUri($url),
+            $url,
             $_REQUEST);
     }
 
-    public final function routing($pattern, $action) {
+    public final function routing($pattern, $action) 
+    {
         $this->router->addRouting($pattern, $action);
         return $this;
     }
 
-    private final function pathFromUri($path) {
+   /* private final function pathFromUri($path) 
+    {
         $path = !empty($path) && $path[strlen($path) - 1] == '/' ? substr($path, 0, strlen($path) - 1) : $path;
-        if (empty($path)) {
+        if (empty($path)) 
+        {
             return '';
         }
         $queryPos = strpos($path, '?');
-        if ($queryPos !== FALSE) {
+        if ($queryPos !== FALSE) 
+        {
             $path = substr($path, 0, $queryPos);
         }
         return $path[0] === '/' ? substr($path, 1) : $path;
-    }
+    }*/
+
 }
 

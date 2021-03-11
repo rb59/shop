@@ -1,16 +1,18 @@
 <?php
 require_once 'config/database.php';
-
+require_once 'QueryHelper.php';
 class Model
 {
     private $conn;
     private $db;
     private $table;
+    private $helper;
 
     public function __construct()
     {
         $this->conn = new Database();
         $this->db = $this->conn->connect();
+        $this->helper = new QueryHelper();
     }
    
     public function setTable($table)
@@ -28,14 +30,15 @@ class Model
     public function id($id)
     {
         
-        $query = $this->db->query("SELECT * FROM {$this->table} WHERE id = '{$id}' ");
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->db->query("SELECT * FROM {$this->table} WHERE id = '{$this->helper->Filter($id)}' ");
+        $data = $query->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
 
     public function getBy($field,$value)
     {
-        $query = $this->db->query("SELECT * FROM {$this->table} WHERE {$field} = '{$value}' ");
+        $query = $this->db->query("SELECT * FROM {$this->table} 
+        WHERE {$this->helper->Filter($field)} = '{$this->helper->Filter($value)}' ");
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         return  $data;
     }
@@ -53,21 +56,19 @@ class Model
         $fieldstring = "";
         foreach ($fields as $field => $value) 
         {
-            $fieldstring += "$field = $value,";
+            $fieldstring += "$field = {$this->helper->Filter($value)},";
         }
         return substr($fieldstring,0,-1);
     }
 
     public function delete(Int $id)
     {
-        $query = $this->db->prepare("DELETE FROM {$this->table} WHERE id = '{$id}' ");
+        $query = $this->db->prepare("DELETE FROM {$this->table} WHERE id = '{$this->helper->Filter($id)}' ");
         $query->execute();
         return;
     }
 
 
-
-
-
+    
 
 }

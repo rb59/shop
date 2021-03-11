@@ -1,5 +1,4 @@
 <?php
-require_once "classes/model.php";
 class Cart extends Model
 {
     function __construct()
