@@ -140,6 +140,11 @@ function multiform(){
 		}
 	});
 }
+
+function name(params) {
+	
+}
+
 function url(uri){
 	var action = $('#select_post').attr("action");
 	location.href = action+"/categoria/"+uri;

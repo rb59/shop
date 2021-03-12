@@ -10,7 +10,7 @@
 							<div class="card-header py-4">Login</div>
 							<div class="card-body">
 								<div id="result-multiform"></div>
-								<form action="<?php echo PATH;?>/submits/login.php" method="post" id="form">
+								<form action="<?php echo PATH;?>/user/login" method="post" id="form">
 									<div class="form-group">
 										<label class="small text-gray-600" for="leadCapCompany">Email</label>
 										<div class="input-group">

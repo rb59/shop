@@ -27,7 +27,7 @@ class User extends Model
      */ 
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = $this->helper->Filter($name);
 
         return $this;
     }
@@ -47,7 +47,7 @@ class User extends Model
      */ 
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = $this->helper->Filter($email);
 
         return $this;
     }
@@ -103,30 +103,58 @@ class User extends Model
         return;
     }
 
+    public function Login()
+    {
+        
+        if(empty($this->email)  || empty($this->password))
+        {
+            $this->helper->Alert("error", "Please complete all fields");
+        }
+        elseif(!$this->userExist())
+        {
+            $this->helper->Alert("warning", "Email not registered");
+        }
+        elseif($this->userCredentals() )
+        {
+            $this->sessionInit();
+            echo "
+                <script type=\"text/javascript\">
+                    location.href = '". PATH ."/';
+                </script>
+            ";
+            exit;
+        }
+        else
+        {
+            $this->helper->Alert("error", "Incorrect email or password");
+            $this->helper->ARClass("error","#email");
+            $this->helper->ARClass("error","#password");
+        }
+        
+    }
+
     public function Register() 
     {       
+        
         if(empty($this->name) ||  empty($this->email) || empty($this->password) )
         {
             $this->helper->Alert("error", "Please complete all fields");
         }
-        else{
+        else
+        {
             $ValidateName = $this->helper->ValidateTextField($this->name,"Name","#name");
             $ValidateEmail = $this->helper->ValidateEmail($this->email, "#email");
             $ValidatePassword = $this->helper->ValidatePassword($this->password, "#password");
+            if (empty($ValidateEmail) && $this->userExist()) {
+                $ValidateEmail = "Email already registered";
+                $this->helper->ARClass("error","#email");
+            }
             
             if(empty($ValidateName) && empty($ValidateEmail) && empty($ValidatePassword) )
             {	
-                
-                $npassword = $this->helper->PHash($this->password);
+                $this->password = $this->helper->PHash($this->password);
                 $this->save();
-                //ENVIAMOS LAS PREGUNTAS A LA FUNCION DE AGREGAR PREGUNTAS
-                $user = $this->getBy('email',$this->email);
-                $userid = $user['id'];
-                
-                $_SESSION['id'] = $userid;
-                $_SESSION['email'] = $this->email;
-                $_SESSION['password'] = $npassword;
-                $_SESSION['balance']  = $this->balance;
+                $this->sessionInit();
                
                 echo "
                     <script type=\"text/javascript\">
@@ -135,13 +163,12 @@ class User extends Model
                 ";
                 return true;
             }
-            else{
-                if(!empty($ValidateName)){ $error1 = "<li>". $ValidateName."</li>";}
-
-                if(!empty($ValidateEmail)){ $error2 = "<li>". $ValidateEmail ."</li>"; }
-                if(!empty($ValidatePassword)){ $error3 = "<li>". $ValidatePassword ."</li>"; }
-
-                $error = $error1 . $error2 . $error3 ;
+            else
+            {
+                $error = '';
+                if(!empty($ValidateName)){ $error .= "<li>". $ValidateName."</li>";}
+                if(!empty($ValidateEmail)){ $error .= "<li>". $ValidateEmail ."</li>"; }
+                if(!empty($ValidatePassword)){ $error .= "<li>". $ValidatePassword ."</li>"; }
                 $this->helper->Alert("error", $error);
             }
         }
@@ -150,9 +177,37 @@ class User extends Model
         
     }
 
+    public function sessionInit()
+    {
+        $users = $this->getBy('email',$this->email);
+        foreach ($users as $user) 
+        {
+            foreach ($user as $key => $value) 
+            {
+                $_SESSION[$key] = $value;
+            }            
+        }
+    }
     
+    public function userExist()
+    {
+        $num_users = $this->db->query("SELECT COUNT(*) FROM users WHERE email = '{$this->email}'")->fetchColumn();
+        if ($num_users > 0) 
+        {
+            return True;
+        }
+        return False;
+    }
 
-
+    public function userCredentals()
+    {
+        $user = $this->db->query("SELECT COUNT(*) FROM users WHERE email = '{$this->email}' AND password = '{$this->helper->PHash($this->password)}'")->fetchColumn();
+        if ($user > 0) 
+        {
+            return True;
+        }
+        return False;
+    }
 
 
 }

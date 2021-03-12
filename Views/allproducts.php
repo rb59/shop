@@ -39,7 +39,7 @@
                                 </select>
 							</div>
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-								<button class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button>
+								<button id="btn-rate-<?=$product['id']?>" onclick="rate(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button>
 							</div>
 						</div>
 						<hr>
@@ -62,7 +62,7 @@
                                 <?php } ?>
 							</div>
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-								<button class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Add</button>
+								<button id="btn-add-<?=$product['id']?>" onclick="add(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Add</button>
 								
 							</div>
 						</div>

@@ -6,6 +6,7 @@ require_once 'classes/model.php';
 require_once 'Routes/Routes.php';
 require_once 'controllers/productcontroller.php';
 require_once 'controllers/usercontroller.php';
+require_once 'controllers/logincontroller.php';
 require_once 'controllers/cartcontroller.php';
 require_once 'controllers/ratingcontroller.php';
 

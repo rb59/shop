@@ -24,7 +24,11 @@ class Routes
             })
             ->routing('/login', function()
             {
-                (new UserController)->login();
+                (new LoginController)->index();
+            })
+            ->routing('/user/login',function()
+            {
+                (new LoginController)->login();
             })
             ->routing('/register', function()
             {
@@ -36,7 +40,7 @@ class Routes
             })
             ->routing('/logout',function()
             {
-                (new UserController)->Logout();
+                (new LoginController)->Logout();
             })
             ->routing('/mycart', function()
             {
