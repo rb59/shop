@@ -1,4 +1,4 @@
-<nav class="navbar navbar-marketing navbar-expand-lg bg-light2 shadow <?php ///if($tab == "1"){ echo 'bg-transparent '; }else{echo 'bg-light2 shadow';} ?> navbar-light2 fixed-top">
+<nav class="navbar navbar-marketing navbar-expand-lg bg-light2 shadow navbar-light2 fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo PATH;?>/"><img src="<?php echo PATH;?>/resources/img/cart.png" width="40">MY SHOP </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i data-feather="menu"></i></button>
@@ -13,7 +13,7 @@
 					<li class="nav-item ">
 							<a class="nav-link" href="<?php echo PATH;?><?= isset($_SESSION['id']) ? '/purchases' : '/register'; ?>"><?= isset($_SESSION['id']) ? 'Purchases' : 'Register'; ?></a>
 					</li>
-					
+					<?= isset($_SESSION['id']) ? '<li class="nav-item "><a class="nav-link" href="'.PATH.'/logout">LogOut</a></li>' : ''?>
 			</div>
 		</div>
 	</nav>

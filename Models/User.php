@@ -4,7 +4,7 @@ class User extends Model
     private $name;
     private $email;
     private $password;
-    private $balance;
+    private $balance = 100;
     
     public function __construct()
     {
@@ -94,13 +94,60 @@ class User extends Model
 
     public function save()
     {
-        $query = $this->$db->prepare("INSERT INTO users (name,email,password,balance) VALUES (:name,:email,:password,:balance)");
+        $query = $this->db->prepare("INSERT INTO users (name,email,password,balance) VALUES (:name,:email,:password,:balance)");
         $query->bindParam(':name',$this->name);
-        $query->bindParam(':email',$this->name);
-        $query->bindParam(':password',$this->name);
-        $query->bindParam(':balance',$this->name);
+        $query->bindParam(':email',$this->email);
+        $query->bindParam(':password',$this->password);
+        $query->bindParam(':balance',$this->balance);
         $query->execute();
         return;
+    }
+
+    public function Register() 
+    {       
+        if(empty($this->name) ||  empty($this->email) || empty($this->password) )
+        {
+            $this->helper->Alert("error", "Please complete all fields");
+        }
+        else{
+            $ValidateName = $this->helper->ValidateTextField($this->name,"Name","#name");
+            $ValidateEmail = $this->helper->ValidateEmail($this->email, "#email");
+            $ValidatePassword = $this->helper->ValidatePassword($this->password, "#password");
+            
+            if(empty($ValidateName) && empty($ValidateEmail) && empty($ValidatePassword) )
+            {	
+                
+                $npassword = $this->helper->PHash($this->password);
+                $this->save();
+                //ENVIAMOS LAS PREGUNTAS A LA FUNCION DE AGREGAR PREGUNTAS
+                $user = $this->getBy('email',$this->email);
+                $userid = $user['id'];
+                
+                $_SESSION['id'] = $userid;
+                $_SESSION['email'] = $this->email;
+                $_SESSION['password'] = $npassword;
+                $_SESSION['balance']  = $this->balance;
+               
+                echo "
+                    <script type=\"text/javascript\">
+                        location.href = '". PATH ."/';
+                    </script>
+                ";
+                return true;
+            }
+            else{
+                if(!empty($ValidateName)){ $error1 = "<li>". $ValidateName."</li>";}
+
+                if(!empty($ValidateEmail)){ $error2 = "<li>". $ValidateEmail ."</li>"; }
+                if(!empty($ValidatePassword)){ $error3 = "<li>". $ValidatePassword ."</li>"; }
+
+                $error = $error1 . $error2 . $error3 ;
+                $this->helper->Alert("error", $error);
+            }
+        }
+    
+        return false;
+        
     }
 
     

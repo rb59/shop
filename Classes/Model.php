@@ -4,9 +4,9 @@ require_once 'QueryHelper.php';
 class Model
 {
     private $conn;
-    private $db;
+    public $db;
     private $table;
-    private $helper;
+    public $helper;
 
     public function __construct()
     {
@@ -14,6 +14,8 @@ class Model
         $this->db = $this->conn->connect();
         $this->helper = new QueryHelper();
     }
+
+    
    
     public function setTable($table)
     {
@@ -39,7 +41,7 @@ class Model
     {
         $query = $this->db->query("SELECT * FROM {$this->table} 
         WHERE {$this->helper->Filter($field)} = '{$this->helper->Filter($value)}' ");
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        $data = $query->fetch(PDO::FETCH_ASSOC);
         return  $data;
     }
 

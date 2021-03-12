@@ -16,7 +16,6 @@
 							</div>
 							<div class="col-md-8">
 								<div class="ml-4">
-                                
 									<h5><?php echo $product["name"];?></h5>
 									<p class="card-text text-gray-600"><?php echo $product["description"];?></p>
 									<a  href="<?=PATH?>/product/<?=$product['id']?>">more</a>

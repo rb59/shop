@@ -1,5 +1,5 @@
 <?php 
-class Controller
+abstract class Controller
 {
     public function render($view,Array $data = null)
     {
@@ -19,25 +19,12 @@ class Controller
 
         require_once "Views/Layouts/BaseLayout.php";
     }
-/*
-    public function getPost(Type $var = null)
+
+    public function getPost($param)
     {
-        # code...
+        return $_POST[$param];
     }
 
-    public function FunctionName(Type $var = null)
-    {
-        # code...
-    }
-
-    public function FunctionName(Type $var = null)
-    {
-        # code...
-    }
-
-    public function FunctionName(Type $var = null)
-    {
-        # code...
-    }*/
+    
 
 }
