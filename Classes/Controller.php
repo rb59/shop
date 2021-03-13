@@ -25,6 +25,14 @@ abstract class Controller
         return $_POST[$param];
     }
 
+    public function existPost($param)
+    {
+        if (isset($_POST[$param])) {
+            return True;
+        }
+        return False;
+    }
+
     
 
 }

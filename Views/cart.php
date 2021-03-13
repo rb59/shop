@@ -6,7 +6,7 @@
             <div class="card-header">Cart</div>
             <div class="card-body">
                 <div class="datatablex">
-                    <table class="DataTableJSB2 table  table-bordered dataTable dt-responsive" style="width:100%" data-src="<?php echo PATH;?>/manage/ajax/cursos.php">
+                    <table class="DataTableJSB2 table table-responsive-md table-striped table-bordered dataTable dt-responsive"  data-src="<?php echo PATH;?>/manage/ajax/cursos.php">
                         <thead>
                             <tr>
                                 <th class="no-sort">Product</th>
@@ -20,7 +20,7 @@
                             <tr>
                                 <td>prueba</td>
                                 <td>prueba</td>
-                                <td><input class="form-control" type="number" name="" id="" value="1"></td>
+                                <td>1</td>
                                 <td>prueba</td>
                                 <td>prueba</td>
                             </tr>

@@ -2,7 +2,9 @@
 		<div class="container mt-4">
 			
 			<hr class="mt-0">
+			<div id="result-multiform"></div>
 			<div class="row justify-content-center">
+			
 			<?php
 			foreach ($products as $product) 
             {
@@ -48,24 +50,32 @@
 								<h5>Price</h5>
 								<p class="card-text text-gray-600"><?php echo $product['price'];?>$</p>
 							</div>
+							
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-								
+							<form id="form-add-<?=$product['id']?>" action="<?=PATH?>/add/<?=$product['id']?>" method="POST">
 								<p class="card-text text-gray-600">Quantity</p>
-                                <input class="form-control" type="number" name="" id="" value="1">
+                                <input class="form-control" type="number" name="quantity" id="quantity-<?=$product['id']?>" value="1">
                                 <?php 
                                 if(strtolower($product['name']) == 'cheese') 
                                 { ?>
-                                    <select class="form-control" name="" id="">
+                                    <select class="form-control" name="scale" id="">
                                     <option value="1">Kg</option>
                                     <option value="2">g</option>
                                     </select>
                                 <?php } ?>
+								</form>
 							</div>
+							
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-								<button id="btn-add-<?=$product['id']?>" onclick="add(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Add</button>
+							
+								<button onclick="add(<?=$product['id']?>);" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Add</button>
+								
+							
 								
 							</div>
+							
 						</div>
+						
 						<hr>
 						</div>
 					</div>

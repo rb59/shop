@@ -36,25 +36,12 @@ $(function() {
 			$input = rep;
 		}).insertAfter($input);
 	});
-// PARA NO REPETIR LA PREGUNTA SELECCIONADA
-	$(".sel").each(function() {
-		$(this).data('original', $(this).html());
-	});
-	$(document).on('change', '.sel', function() {
-		$('.sel').each(function() {
-			var valor = $(this).val();
-			$(this).html($(this).data('original'));
-			$(this).val(valor);
-		});
-		$('.sel').each(function() { 
-			$(this).siblings().find('option[value="' + $(this).val() + '"]').remove();
-		});
-	});	
+
 //AJAX PARA VARIOS FORM
-	$(document).on('click','#multiform_complete',function(e){
-		e.preventDefault();
-		multiform();
-	});
+$(document).on('click','#multiform_complete',function(e){
+	e.preventDefault();
+	multiform();
+});
 
 //eliminar espacio en blanco en inputs
 	$(".withoutspace").keyup(function(){              
@@ -122,7 +109,8 @@ function confirmar_form(title,texto,formulario){
 	}).set({title:title}).set({labels:{ok:'Confirmar', cancel: 'Cancelar'}});             
 }
 
-function multiform(){
+function multiform()
+{
 	var elements = document.getElementsByClassName("form-control");
 	for(var i=0; i<elements.length;i++){
 		if( (!$("#"+elements[i].name).val()) || ($("#"+elements[i].name).val() <= 0)) {	
@@ -141,7 +129,20 @@ function multiform(){
 	});
 }
 
-function name(params) {
+function add(id) 
+{
+	jQuery.ajax(
+	{
+		type: "POST",
+		url: $('#form-add-'+id).attr("action"),
+		data: $('#form-add-'+id).serialize(),
+		success: function (data) {
+			$('#result-multiform').html(data);
+		}
+	});
+	$("html, body").animate({
+		scrollTop: 0
+	}, 1500);
 	
 }
 
@@ -156,3 +157,4 @@ document.addEventListener('DOMContentLoaded', () => {
 	  }
 	}))
 });
+

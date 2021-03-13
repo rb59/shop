@@ -134,6 +134,16 @@ class QueryHelper
                     </button>			
                 </div>';
         }
+        elseif($a=="success")
+        {
+            echo '
+                <div class="alert alert-success mt-2">
+                    '. $b .'
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>			
+                </div>';
+        }
         return;
     }
 

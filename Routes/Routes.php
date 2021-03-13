@@ -18,10 +18,6 @@ class Routes
             {   
                 (new ProductController())->Show($params); 
             })
-            ->routing('/cart/add', function ()
-            {
-                (new CartController())->add();    
-            })
             ->routing('/login', function()
             {
                 (new LoginController)->index();
@@ -44,11 +40,15 @@ class Routes
             })
             ->routing('/mycart', function()
             {
-               (new CartController)->Index();
+                (new CartController)->Index();
             })
             ->routing('/purchases',function()
             {
-               (new CartController)->purchased();
+                (new CartController)->purchased();
+            })
+            ->routing(('/add/{id}'),function($params)
+            {
+                (new CartController)->add($params);
             })
             ->dispatch();
     }

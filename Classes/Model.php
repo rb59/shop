@@ -58,7 +58,7 @@ class Model
         $fieldstring = "";
         foreach ($fields as $field => $value) 
         {
-            $fieldstring += "$field = {$this->helper->Filter($value)},";
+            $fieldstring .= "$field = {$this->helper->Filter($value)},";
         }
         return substr($fieldstring,0,-1);
     }

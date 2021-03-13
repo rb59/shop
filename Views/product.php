@@ -29,9 +29,11 @@
 						</div>
 					</div>
 					<div class="card-body bg-light">
+					<div id="result-multiform"></div>
                         <div class="row allign-items-center">
                             
                                 <div class="col-md-6">
+								<p class="card-text text-gray-600">Rate</p>
                                 <p><select class="form-control" name="rate" id="rate">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -42,16 +44,19 @@
                                 </p><button id="btn-rate-<?=$product['id']?>" onclick="rate(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button></p>
                                 </div>
                                 <div class="col-md-6">
+								
+								<form id="form-add-<?=$product['id']?>" action="<?=PATH?>/add/<?=$product['id']?>" method="POST">
                                 <p class="card-text text-gray-600">Quantity</p>
-                                <p><input class="form-control" type="number" name="" id="" value="1"></p>
+                                <p><input class="form-control" type="number" name="quantity" id="" value="1"></p>
                                 <?php if(strtolower($product['name']) == 'cheese')  
                                 { ?>
-                                    <p><select class="form-control" name="" id="">
+                                    <p><select class="form-control" name="scale" id="">
                                     <option value="1">Kg</option>
                                     <option value="2">g</option>
                                     </select></p>
                                 <?php } ?>
-                                <p><button id="btn-add-<?=$product['id']?>" onclick="add(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Add</button></p>
+								</form>
+                                <p><button onclick="add(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Add</button></p>
 								
 								</div>
                         </div>

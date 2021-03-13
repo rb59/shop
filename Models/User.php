@@ -12,86 +12,6 @@ class User extends Model
         $this->setTable('users');
     }
 
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
-    {
-        $this->name = $this->helper->Filter($name);
-
-        return $this;
-    }
-
-    /**
-     * Get the value of email
-     */ 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the value of email
-     *
-     * @return  self
-     */ 
-    public function setEmail($email)
-    {
-        $this->email = $this->helper->Filter($email);
-
-        return $this;
-    }
-
-    /**
-     * Get the value of password
-     */ 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of balance
-     */ 
-    public function getBalance()
-    {
-        return $this->balance;
-    }
-
-    /**
-     * Set the value of balance
-     *
-     * @return  self
-     */ 
-    public function setBalance($balance)
-    {
-        $this->balance = $balance;
-
-        return $this;
-    }
-
     public function save()
     {
         $query = $this->db->prepare("INSERT INTO users (name,email,password,balance) VALUES (:name,:email,:password,:balance)");
@@ -210,4 +130,83 @@ class User extends Model
     }
 
 
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
+        $this->name = $this->helper->Filter($name);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $this->helper->Filter($email);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of balance
+     */ 
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+
+    /**
+     * Set the value of balance
+     *
+     * @return  self
+     */ 
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+
+        return $this;
+    }
 }
