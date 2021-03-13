@@ -2,15 +2,8 @@ $(function() {
 //VARIABLES GLOBALES
 	var link = 'http://localhost/shop';
 	var $oldervalue = "";
-// ANTERIOR Y SIGUIENTE MULTIPLES SECCIONES	
-	$('.btnNext').click(function() {
-		$('.nav-borders .active').parent().next('li').find('a').trigger('click');
-	});
 
-	$('.btnPrevious').click(function() {
-		$('.nav-borders .active').parent().prev('li').find('a').trigger('click');
-	});
-// PARA MOSTRAR CONTRASEÑA
+// Show password
 	$('.input-group').find('.password-box').each(function(index, input) {
 		var $input = $(input);
 		$(input).parent().find('.password-visibility').on('click',function(e){
@@ -37,7 +30,7 @@ $(function() {
 		}).insertAfter($input);
 	});
 
-//AJAX PARA VARIOS FORM
+//FORMS
 $(document).on('click','#multiform_complete',function(e){
 	e.preventDefault();
 	multiform();
@@ -78,20 +71,8 @@ $(document).on('click','#multiform_complete',function(e){
 		return false;
 	});
 });
-function previewImage() {        
-    var reader = new FileReader();         
-    reader.readAsDataURL(document.getElementById('uploadImage').files[0]);         
-    reader.onload = function (e) {             
-        document.getElementById('uploadPreview').src = e.target.result;         
-    };     
-}
-function eliminar(title,texto, ruta){
-	alertify.confirm(texto, function(e){
-		if (e){
-			location.href = ruta;
-		}
-	}).set({title:title}).set({labels:{ok:'Confirmar', cancel: 'Cancelar'}});             
-}
+
+
 
 function confirmar_multiform(title,texto){
 	alertify.confirm(texto, function(e){

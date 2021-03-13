@@ -12,6 +12,11 @@ class RatingController extends Controller
 
     public function rate($params)
     {
+        if(!isset($_SESSION['id']))
+        {
+            echo "<script type=\"text/javascript\">location.href = '". PATH ."/login';</script>";
+            exit;
+        }
         $rate = $this->getPost('rating');
         $product = $params['id'];
         $user = $_SESSION['id'];

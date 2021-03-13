@@ -87,14 +87,6 @@ class Cart extends Model
     }
 
     /**
-     * Get the value of owner
-     */ 
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    /**
      * Set the value of owner
      *
      * @return  self
@@ -107,14 +99,6 @@ class Cart extends Model
     }
 
     /**
-     * Get the value of owner_balance
-     */ 
-    public function getOwner_balance()
-    {
-        return $this->owner_balance;
-    }
-
-    /**
      * Set the value of owner_balance
      *
      * @return  self
@@ -124,14 +108,6 @@ class Cart extends Model
         $this->owner_balance = $this->helper->Filter($owner_balance);
 
         return $this;
-    }
-
-    /**
-     * Get the value of total
-     */ 
-    public function getTotal()
-    {
-        return $this->total;
     }
 
     /**
