@@ -1,6 +1,6 @@
 $(function() {
 //VARIABLES GLOBALES
-	var link = 'http://localhost/jsbasics';
+	var link = 'http://localhost/shop';
 	var $oldervalue = "";
 // ANTERIOR Y SIGUIENTE MULTIPLES SECCIONES	
 	$('.btnNext').click(function() {
@@ -129,17 +129,56 @@ function multiform()
 	});
 }
 
+loadRatings();
+
+function loadRatings() 
+{
+	var elements = document.getElementsByClassName("rating");
+	var requests = [];
+	for(var i=0; i<elements.length;i++){
+		daturl =  $('#rating-'+(i+1)).attr("action")
+		requests.push(
+			$.get(daturl)
+		);
+	}
+	Promise.all(requests).then(function(data) {
+		data.forEach(function (data, a){
+			console.log('#rating-'+(a+1)); 
+			document.getElementById('rating-'+(a+1)).innerHTML = data;
+			a++;
+		})
+	});
+}
+
 function add(id) 
 {
 	jQuery.ajax(
-	{
-		type: "POST",
-		url: $('#form-add-'+id).attr("action"),
-		data: $('#form-add-'+id).serialize(),
-		success: function (data) {
-			$('#result-multiform').html(data);
-		}
-	});
+		{
+			type: "POST",
+			url: $('#form-add-'+id).attr("action"),
+			data: $('#form-add-'+id).serialize(),
+			success: function (data) {
+				$('#result-multiform').html(data);
+			}
+		});
+	$("html, body").animate({
+		scrollTop: 0
+	}, 1500);
+	
+}
+
+function rate(id) 
+{
+	jQuery.ajax(
+		{
+			type: "POST",
+			url: $('#form-rate-'+id).attr("action"),
+			data: $('#form-rate-'+id).serialize(),
+			success: function (data) {
+				$('#result-multiform').html(data);
+				loadRatings();
+			}
+		});
 	$("html, body").animate({
 		scrollTop: 0
 	}, 1500);

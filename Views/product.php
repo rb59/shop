@@ -12,7 +12,7 @@
                             <div class="d-flex align-items-center">
                             <div class="col-md-6">
                                     <h5>Rating</h5>
-										<p class="card-text text-gray-600">0.0</p>
+										<p action="<?=PATH?>/rating/<?=$product['id']?>" id="rating-1" class="rating card-text text-gray-600"></p>
 									</div>
 									<div class="col-md-6">
 										<h5>Price</h5>
@@ -33,15 +33,17 @@
                         <div class="row allign-items-center">
                             
                                 <div class="col-md-6">
+								<form id="form-rate-<?=$product['id']?>" action="<?=PATH?>/rate/<?=$product['id']?>" method="POST">
 								<p class="card-text text-gray-600">Rate</p>
-                                <p><select class="form-control" name="rate" id="rate">
+                                <p><select class="form-control" name="rating" id="rate">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                                 </select></p>
-                                </p><button id="btn-rate-<?=$product['id']?>" onclick="rate(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button></p>
+								</form>
+                                </p><button onclick="rate(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button></p>
                                 </div>
                                 <div class="col-md-6">
 								

@@ -50,6 +50,14 @@ class Routes
             {
                 (new CartController)->add($params);
             })
+            ->routing('/rating/{id}',function ($params)
+            {
+                (new RatingController)->getRating($params);
+            })
+            ->routing('/rate/{id}',function ($params)
+            {
+                (new RatingController)->rate($params);
+            })
             ->dispatch();
     }
 }

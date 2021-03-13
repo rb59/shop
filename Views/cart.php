@@ -3,7 +3,7 @@
 
 <div class="container ">
         <div class="card">
-            <div class="card-header">Cart</div>
+            <div class="card-header">Cart.  Current Balance: <?=$_SESSION['balance'];?>$</div>
             <div class="card-body">
                 <div class="datatablex">
                     <table class="DataTableJSB2 table table-responsive-md table-striped table-bordered dataTable dt-responsive"  data-src="<?php echo PATH;?>/manage/ajax/cursos.php">
@@ -36,6 +36,26 @@
                         </tfoot>
                     </table>
                 </div>
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
+                    <p>Subtotal: 100$ USD</p>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
+                    <p>Shipping
+                    <select class="form-control" name="" id="">
+                    <option selected value=""></option>
+                    <option value="1">Pick up</option>
+                    <option value="2">UPS +5$</option>
+                    </select>
+                    </p>
+                    </div > 
+                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
+                    <button id="btn-rate-" onclick="" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Pay</button>
+                    </div>
+                </div>
+                
+                
+                
             </div>
             </div>
     </div>

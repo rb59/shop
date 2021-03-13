@@ -29,19 +29,21 @@
 						<div class="row align-items-center ml-1">
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
 								<h5>Rating</h5>
-								<p class="card-text text-gray-600">0.0</p>
+								<p action="<?=PATH?>/rating/<?=$product['id']?>" id="rating-<?=$product['id']?>" class="card-text text-gray-600 rating"></p>
 							</div>
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-                            <select class="form-control" name="" id="">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
+							<form id="form-rate-<?=$product['id']?>" action="<?=PATH?>/rate/<?=$product['id']?>" method="POST">
+                            	<select class="form-control" name="rating" >
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
                                 </select>
+							</form>
 							</div>
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-								<button id="btn-rate-<?=$product['id']?>" onclick="rate(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button>
+							<button onclick="rate(<?=$product['id']?>)" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Rate</button>
 							</div>
 						</div>
 						<hr>
@@ -63,7 +65,7 @@
                                     <option value="2">g</option>
                                     </select>
                                 <?php } ?>
-								</form>
+							</form>
 							</div>
 							
 							<div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">

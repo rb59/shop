@@ -11,11 +11,7 @@ class CartController extends Controller
     {
         if(!isset($_SESSION['id']))
         {
-            echo "
-                    <script type=\"text/javascript\">
-                        location.href = '". PATH ."/login';
-                    </script>
-                ";
+            echo "<script type=\"text/javascript\">location.href = '". PATH ."/login';</script>";
             exit;
         } 
         $cart = new Cart();
@@ -25,7 +21,8 @@ class CartController extends Controller
         $quantity = $this->getPost('quantity');
         if ($this->existPost('scale')) 
         {
-            if ($this->getPost('scale') == 2) {
+            if ($this->getPost('scale') == 2) 
+            {
                 $quantity /= 1000;
             }
         }
