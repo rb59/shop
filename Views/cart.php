@@ -24,15 +24,15 @@
                             { ?>  
                                     <tr>
                                         <td><?=$product['name']?></td>
-                                        <td id="price-<?=$product['id']?>"><?=$product['price']?></td>
+                                        <td id="price-<?=$product['id']?>"><?=$product['price']?>$</td>
                                         <td id="quantity-<?=$product['id']?>"><?=$product['quantity']?> <?=$product['name'] == 'Cheese' ? 'Kg' : ''?>
                                         
                                         </td>
                                         
                                         <td >
                                         
-                                        <form id="form-cart-<?=$product['id']?>" action="<?=PATH?>" method="POST">
-                                        <input value='0' class="form-control"type="number" name="quantity" id="input-<?=$product['id']?>">
+                                        <form style="width:100px !important;" id="form-cart-<?=$product['id']?>" action="<?=PATH?>" method="POST">
+                                        <input value="0" class="form-control"type="number" name="quantity" id="input-<?=$product['id']?>">
                                         <?php 
                                         if(strtolower($product['name']) == 'cheese') 
                                         { ?>
@@ -58,23 +58,25 @@
                     </table>
                 </div>
                 <?php 
-                if((isset($amount)))
+                if($amount > 0)
                 { ?>
                 <div class="row align-items-center">
                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
                     <p id="subtotal">Subtotal: <?=$amount?>$ USD</p>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
+                    <form id="pay-form" action="<?=PATH?>/pay" method="POST">
                     <p>Shipping
-                    <select class="form-control" name="" id="">
-                    <option selected value=""></option>
+                    <select class="form-control" name="shipping" id="">
+                    <option selected value="0"></option>
                     <option value="1">Pick up</option>
                     <option value="2">UPS +5$</option>
                     </select>
                     </p>
+                    </form>
                     </div > 
                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-xl-0 mb-md-0 mb-lg-3 mb-3">
-                    <button id="btn-rate-" onclick="" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Pay</button>
+                    <button id="btn-rate-" onclick="pay();" class="btn btn-primary btn-marketing btn-block rounded-pill " type="submit">Pay</button>
                     </div>
                 </div>
                 <?php } ?>

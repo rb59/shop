@@ -42,10 +42,6 @@ class Routes
             {
                 (new CartController)->Index();
             })
-            ->routing('/cartprods', function()
-            {
-                (new CartController)->Index();
-            })
             ->routing('/purchases',function()
             {
                 (new CartController)->purchased();
@@ -57,6 +53,10 @@ class Routes
             ->routing(('/remove/{id}'),function($params)
             {
                 (new CartController)->remove($params);
+            })
+            ->routing(('/pay'),function($params)
+            {
+                (new CartController)->pay($params);
             })
             ->routing('/rating/{id}',function ($params)
             {

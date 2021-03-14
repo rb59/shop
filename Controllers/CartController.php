@@ -57,8 +57,20 @@ class CartController extends Controller
         $cart->removeProd($product,$quantity);
     }
 
+    public function pay()
+    {
+        $cart = new Cart();
+        $cart->setOwner($_SESSION['id']);
+        $cart->setOwner_balance($_SESSION['balance']);
+        $shipping = $this->getPost('shipping');
+        $cart->pay($shipping);
+    }
+
     public function purchased()
     {
-        $this->render('purchases');
+        $cart = new Cart();
+        $cart->setOwner($_SESSION['id']);
+        $purchases = $cart->getPurchases();
+        $this->render('purchases',['purchases' => $purchases]);
     }
 }

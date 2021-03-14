@@ -70,6 +70,23 @@ function multiform()
 	});
 }
 
+function pay()
+{
+	
+	jQuery.ajax({
+		type: "POST",
+		url: $('#pay-form').attr("action"),
+		data: $('#pay-form').serialize(),
+		success: function (data) {
+			$('#result-multiform').html(data);
+		}
+	});
+	$("html, body").animate({
+		scrollTop: 0
+	}, 1500);
+}
+
+
 loadRatings();
 
 function loadRatings() 

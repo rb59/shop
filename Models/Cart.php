@@ -61,6 +61,31 @@ class Cart extends Model
         return False;
     }
 
+    public function pay($shipping)
+    {
+        if($shipping != 1 && $shipping != 2)
+        {
+            $this->helper->Alert('error','Please select a shipping method');
+        }
+        else
+        {
+            $cart = $this->getCart();
+            $total = $shipping == 2 ? $cart['total_amount'] + 5 : $cart['total_amount'];
+            if ( $total > $this->owner_balance )
+            {
+                $this->helper->Alert('error','Cart\'s total amount is higher than your current balance');
+            }
+            else
+            {
+                $userbalance = $this->owner_balance - $total;
+                $this->update($cart['id'],['total_amount' => $total, 'status' => 'purchased', 'purchased' => date('Y-m-d')]);
+                $this->db->query("UPDATE users SET balance = $userbalance WHERE id = {$this->owner}");
+                $_SESSION['balance'] = $userbalance;
+                echo "<script type=\"text/javascript\">location.href = '". PATH ."/purchases';</script>";
+            }
+        }
+    }
+
     public function updateAmount()
     {
         $amount = 0;
@@ -74,7 +99,7 @@ class Cart extends Model
             {
                 $amount += $products['quantity'] * $products['price'];
             }
-        }          
+        }   
         $this->update($cart['id'],['total_amount' => $amount]);
         return;
     }
@@ -107,6 +132,12 @@ class Cart extends Model
     public function getCart()
     {
         $cart = $this->db->query("SELECT * FROM carts WHERE users_id = $this->owner AND status = 'active'")->fetch();
+        return $cart;
+    }
+
+    public function getPurchases()
+    {
+        $cart = $this->db->query("SELECT * FROM carts WHERE users_id = $this->owner AND status = 'purchased'")->fetchAll();
         return $cart;
     }
 
