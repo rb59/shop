@@ -33,7 +33,31 @@ class Cart extends Model
             $this->updateAmount();
             $this->helper->Alert('success','Added to cart');
         }
-        
+        return False;
+    }
+
+    public function removeProd($product,$quantity)
+    {        
+        if ($quantity <= 0) 
+        {
+            $this->helper->Alert('error','You must remove at least one product');
+        }
+        else
+        {
+            $cart = $this->getCart();
+            $cartProd = $this->prodInCart($cart['id'],$product);
+            if ( $cartProd['quantity'] > $quantity ) 
+            {
+                $quantity = $cartProd['quantity'] - $quantity;
+                $this->db->query("UPDATE cart_products SET quantity = {$this->helper->Filter($quantity)} WHERE id = {$cartProd['id']}");
+            }
+            else
+            {
+                $this->db->query("DELETE FROM cart_products WHERE id = {$cartProd['id']} ");
+            }
+            $this->updateAmount();
+            $this->helper->Alert('success','Removed from cart');
+        }
         return False;
     }
 

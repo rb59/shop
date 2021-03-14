@@ -54,6 +54,10 @@ class Routes
             {
                 (new CartController)->add($params);
             })
+            ->routing(('/remove/{id}'),function($params)
+            {
+                (new CartController)->remove($params);
+            })
             ->routing('/rating/{id}',function ($params)
             {
                 (new RatingController)->getRating($params);

@@ -45,7 +45,7 @@
                                         </td>
                                         <td>
                                         <button title="Add" onclick="addFromcart(<?=$product['id']?>);" class="btn btn-datatable btn-icon btn-transparent-dark" type="submit"><i class='fas fa-plus'></i></button>
-                                        <button title="Remove" onclick="" class="btn btn-datatable btn-icon btn-transparent-dark" type="submit"><i class='fas fa-trash'></i></button>
+                                        <button title="Remove" onclick="removeFromcart(<?=$product['id']?>);" class="btn btn-datatable btn-icon btn-transparent-dark" type="submit"><i class='fas fa-trash'></i></button>
                                         
                                         </td>
                                     </tr>
