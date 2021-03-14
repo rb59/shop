@@ -86,6 +86,14 @@ class Cart extends Model
         return $cart;
     }
 
+    public function getCartProds()
+    {
+        $cartpr = $this->db->query("SELECT products.id as id, products.name as name, products.price as price, cart_products.quantity as quantity
+        FROM cart_products INNER JOIN products on products.id = cart_products.products_id INNER JOIN carts on carts.id = cart_products.carts_id
+        WHERE carts.users_id = $this->owner AND carts.status = 'active'")->fetchAll();
+        return $cartpr;
+    }
+
     /**
      * Set the value of owner
      *

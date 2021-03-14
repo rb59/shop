@@ -4,9 +4,17 @@ class CartController extends Controller
 {
     public function Index()
     {
-        $this->render('cart');
+        !isset($_SESSION['id']) ? header('LOCATION: '.PATH.'/') : 
+        $cart = new Cart();
+        $cart->setOwner($_SESSION['id']);
+        $amount = $cart->getCart();
+        $amount = !empty($amount) ? $amount['total_amount'] : null;
+        $products = $cart->getCartProds();
+        $this->render('cart',['products' => $products,'amount' => $amount]);
+      
+        
     }
-
+ 
     public function add($params)
     {
         if(!isset($_SESSION['id']))
@@ -31,7 +39,6 @@ class CartController extends Controller
             $cart->create();
         }
         $cart->addToCart($product,$quantity);
-
     }
 
     public function purchased()

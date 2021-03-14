@@ -22,7 +22,7 @@ class Rating extends Model
         if ($avg_rating > 0) 
         {
             $avg_rating /= sizeof($ratings);
-            echo $avg_rating;
+            echo round($avg_rating,2);
         }
         else
         {

@@ -131,6 +131,10 @@ function loadRatings()
 	});
 }
 
+function ren(params) {
+	
+}
+
 function add(id) 
 {
 	jQuery.ajax(
@@ -140,12 +144,46 @@ function add(id)
 			data: $('#form-add-'+id).serialize(),
 			success: function (data) {
 				$('#result-multiform').html(data);
+				
 			}
 		});
 	$("html, body").animate({
 		scrollTop: 0
 	}, 1500);
 	
+}
+
+function addFromcart(id) 
+{
+	var form = document.getElementById('form-cart-'+id);
+	form.setAttribute('action',form.getAttribute('action')+'/add/'+id);
+	form.setAttribute('id','form-add-'+id);
+	var request = []
+	request.push(add(id));
+	Promise.all(request).then(function() {
+		
+		
+	window.location.href = 'http://localhost/shop/mycart';
+		
+	});
+	form.setAttribute('id','form-cart-'+id);
+	form.setAttribute('action','http://localhost/shop');
+	
+		
+	
+
+	/* var input = document.getElementById('input-'+id).value;
+	var scale = document.getElementById('scale-'+id).value;
+	if(scale == 2){
+		input /= 1000
+	}
+	console.log(input);
+	if (input < 0) {
+		var quantity = document.getElementById('quantity-'+id);
+		var price = document.getElementById('price-'+id).innerText;
+		var subtotal = document.getElementById('subtotal').innerText;
+		quantity.innerHTML =  parseFloat(quantity.innerText) + parseFloat(input);
+	}*/
 }
 
 function rate(id) 

@@ -42,6 +42,10 @@ class Routes
             {
                 (new CartController)->Index();
             })
+            ->routing('/cartprods', function()
+            {
+                (new CartController)->Index();
+            })
             ->routing('/purchases',function()
             {
                 (new CartController)->purchased();
