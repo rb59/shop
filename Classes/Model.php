@@ -1,5 +1,5 @@
 <?php
-require_once 'config/database.php';
+require_once 'Config/Database.php';
 require_once 'QueryHelper.php';
 class Model
 {

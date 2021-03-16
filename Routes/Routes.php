@@ -1,5 +1,5 @@
 <?php
-require_once 'classes/Dispatcher.php';
+require_once 'Classes/Dispatcher.php';
 
 class Routes
 {

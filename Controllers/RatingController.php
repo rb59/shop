@@ -1,5 +1,5 @@
 <?php
-require_once 'models/rating.php';
+require_once 'Models/Rating.php';
 class RatingController extends Controller
 {
     public function getRating($params)

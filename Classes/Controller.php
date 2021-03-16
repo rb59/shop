@@ -17,7 +17,7 @@ abstract class Controller
         $content = ob_get_contents();
         ob_end_clean();
 
-        require_once "Views/Layouts/BaseLayout.php";
+        require_once "Views/Layouts/baselayout.php";
     }
 
     public function getPost($param)

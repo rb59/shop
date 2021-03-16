@@ -1,5 +1,5 @@
 <?php
-require_once 'models/cart.php';
+require_once 'Models/Cart.php';
 class CartController extends Controller
 {
     public function Index()

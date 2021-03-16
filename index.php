@@ -1,14 +1,14 @@
 <?php #cd
 session_start();
-require_once 'config/config.php';
-require_once 'classes/controller.php';
-require_once 'classes/model.php';
+require_once 'Config/Config.php';
+require_once 'Classes/Controller.php';
+require_once 'Classes/Model.php';
 require_once 'Routes/Routes.php';
-require_once 'controllers/productcontroller.php';
-require_once 'controllers/usercontroller.php';
-require_once 'controllers/logincontroller.php';
-require_once 'controllers/cartcontroller.php';
-require_once 'controllers/ratingcontroller.php';
+require_once 'Controllers/ProductController.php';
+require_once 'Controllers/UserController.php';
+require_once 'Controllers/LoginController.php';
+require_once 'Controllers/CartController.php';
+require_once 'Controllers/RatingController.php';
 
 (new Config)->defineconf();
 $app = new Routes();

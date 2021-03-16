@@ -1,5 +1,5 @@
 <?php
-require_once 'router.php';
+require_once 'Router.php';
 class Dispatcher 
 {
     private $router;

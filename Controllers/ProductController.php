@@ -1,5 +1,5 @@
 <?php
-require_once 'models/product.php';
+require_once 'Models/Product.php';
 class ProductController extends Controller
 {
     public function Index()
